@@ -30,6 +30,7 @@
 .form__input {
   box-shadow: var(--shadow);
   padding: 8px;
+  border-radius: 20px;
 }
 .form__button {
   background: rgba(178, 255, 181, 0.337254902);
