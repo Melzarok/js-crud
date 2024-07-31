@@ -1,0 +1,54 @@
+@use '../../lib/servcie.scss' as s;
+
+:root {
+  --shadow: -10px -10px 15px rgba(255, 255, 255, 0.5),
+    10px 10px 15px rgba(70, 70, 70, 0.233);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: s.space(4);
+  gap: s.space(8);
+
+  &__title {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: s.space(1);
+    border-bottom: 1px solid s.color('light');
+  }
+
+  &__content {
+    display: grid;
+    gap: s.space(6);
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: s.space(2);
+  }
+
+  &__label {
+    font-size: 14px;
+  }
+
+  &__input {
+    box-shadow: var(--shadow);
+    padding: s.space(2);
+  }
+
+  &__button {
+    background: #b2ffb556;
+    box-shadow: var(--shadow);
+
+    border-radius: 20px;
+    padding: s.space(2);
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
