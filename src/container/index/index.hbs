@@ -23,7 +23,7 @@
             <label for='password' class='form__label'>Password</label>
             <input type='password' name='password' class='form__input' />
           </div>
-          <button class='form__button'>Створити</button>
+          <button class='form__button'>Create</button>
         </div>
       </form>
     </div>
@@ -31,25 +31,47 @@
 
   <section>
     <div class='form'>
-      <h1 class='form__title'>Створити користувача</h1>
+      <h1 class='form__title'>Create User</h1>
       <div class='user-list'>
         {{#with data.users}}
         {{#if isEmpty}}
-        <mark>Списо користувачив пустий</mark>
+        <mark>User list is empty</mark>
         {{else}}
         <ul>
           {{#each list}}
-          <li>{{login}}
-            |
-            {{email}}
-            <a href='/user-delete?id={{id}}'>(видалити)</a>
-          </li>
+          <li>{{login}} | {{email}} | {{id}} <a href='/user-delete?id={{id}}'
+              style="color: rgb(186, 0, 0);">(delete)</a></li>
           {{/each}}
         </ul>
 
         {{/if}}
         {{/with}}
       </div>
+    </div>
+  </section>
+
+  <section>
+    <div class='form'>
+      <h1 class='form__title'>Update Email</h1>
+      <form method='POST' action='/user-update'>
+        <div class='form__content'>
+          <div class='form__field'>
+            <label for='id' class='form__label'>ID:</label>
+            <input type='id' name='id' class='form__input' />
+          </div>
+
+          <div class='form__field'>
+            <label for='email' class='form__label'>New Email</label>
+            <input type='email' name='email' class='form__input' />
+          </div>
+
+          <div class='form__field'>
+            <label for='password' class='form__label'>Password</label>
+            <input type='password' name='password' class='form__input' />
+          </div>
+          <button class='form__button'>Update</button>
+        </div>
+      </form>
     </div>
   </section>
 </main>
