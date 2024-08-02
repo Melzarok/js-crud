@@ -2,31 +2,30 @@ const express = require('express')
 const router = express.Router()
 // ================================================================
 
-class User {
+class Product {
   static #list = []
 
-  constructor(email, login, password) {
-    this.email = email
-    this.login = login
-    this.password = password
-    this.id = new Date().getTime()
+  constructor(name, price, description) {
+    this.name = name
+    this.price = price
+    this.description = description
+    this.createDate = new Date().toISOString()
+    this.id = Math.floor(Math.random() * 100000)
   }
 
-  verifyPassword = (password) => this.password === password
-
-  static add = (user) => {
-    this.#list.push(user)
+  static add = (product) => {
+    this.#list.push(product)
   }
 
   static getList = () => this.#list
 
   static getById = (id) => {
-    return this.#list.find((user) => user.id === id)
+    return this.#list.find((product) => product.id === id)
   }
 
   static deleteById = (id) => {
     const index = this.#list.findIndex(
-      (user) => user.id === id,
+      (product) => product.id === id,
     )
 
     if (index !== -1) {
@@ -38,84 +37,103 @@ class User {
   }
 
   static updateById = (id, data) => {
-    const user = this.getById(id)
+    const product = this.getById(id)
 
-    if (user) {
-      this.update(user, data)
+    if (product) {
+      product.name = data.name || product.name
+      product.price = data.price || product.price
+      product.description =
+        data.description || product.description
+
       return true
     } else {
       return false
     }
   }
-
-  static update = (user, { email }) => {
-    if (email) {
-      user.email = email
-    }
-  }
 }
 // ================================================================
 
-router.get('/', function (req, res) {
-  const list = User.getList()
+// router.get('/', function (req, res) {
+//   const list = Product.getList()
 
-  res.render('index', {
-    style: 'index',
+//   res.render('product-create', {
+//     style: 'product-create',
 
-    data: {
-      users: {
-        list,
-        isEmpty: list.length === 0,
-      },
-    },
-  })
-})
+//     data: {
+//       users: {
+//         list,
+//         isEmpty: list.length === 0,
+//       },
+//     },
+//   })
+// })
 
 // ================================================================
 
-router.post('/user-create', function (req, res) {
-  const { email, login, password } = req.body
-
-  const user = new User(email, login, password)
-
-  User.add(user)
-
-  console.log(User.getList())
-
-  res.render('success-info', {
-    style: 'success-info',
-    info: 'Користувач створений ',
+router.get('/product-create', function (req, res) {
+  res.render('product-create', {
+    style: 'product-create',
   })
 })
 
-router.get('/user-delete', function (req, res) {
-  const { id } = req.query
+router.post('/product-create', function (req, res) {
+  const { name, price, description } = req.body
 
-  User.deleteById(Number(id))
+  try {
+    if (!name || !price || !description) {
+      throw new Error('Всі поля повинні бути заповнені')
+    }
 
-  res.render('success-info', {
-    style: 'success-info',
-    info: 'Користувача видалено',
+    const product = new Product(name, price, description)
+    Product.add(product)
+
+    console.log(Product.getList())
+
+    res.render('alert', {
+      style: 'alert',
+      success: 'Успішне виконання дії',
+      info: 'Продукт створений успішно!',
+    })
+  } catch (error) {
+    res.render('alert', {
+      style: 'alert',
+      success: 'Невдале виконання дії',
+      info: `Помилка: ${error.message}`,
+    })
+  }
+})
+
+router.get('/product-list', function (req, res) {
+  const products = Product.getList()
+
+  res.render('product-list', {
+    style: 'product-list',
+    products: products,
   })
 })
 
-router.post('/user-update', function (req, res) {
-  const { email, password, id } = req.body
+router.get('/product-edit', function (req, res) {
+  const productId = req.query.id
 
-  const user = User.getById(Number(id))
+  const product = Product.getById(productId)
 
-  let result = false
+  console.log(typeof product)
 
-  if (user.verifyPassword(password)) {
-    User.update(user, { email })
-    result = true
+  if (product) {
+    res.render('product-edit', {
+      style: 'product-edit',
+      product: product,
+    })
+  } else {
+    res.render('alert', {
+      style: 'alert',
+      success: 'Невдале виконання дії',
+      info: 'Товар не знайдено',
+    })
   }
 
-  res.render('success-info', {
-    style: 'success-info',
-    info: result
-      ? 'Емайл пошта оновлена!'
-      : 'Сталася помилка!',
+  res.render('product-edit', {
+    style: 'product-edit',
   })
 })
 
