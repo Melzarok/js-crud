@@ -7,6 +7,10 @@
   gap: s.space(8);
   width: 700px;
 
+  &--edit {
+    width: 750px;
+  }
+
   form {
     box-shadow: s.shadow('light');
     border-radius: 5px;
@@ -18,7 +22,7 @@
   }
 
   &__title {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     padding-bottom: s.space(1);
     color: s.color('primary');
@@ -70,9 +74,23 @@
     border-radius: 5px;
     padding: s.space(2);
     transition: opacity 0.5s ease;
+    width: 100%;
   }
 
   &__button:hover {
     opacity: 0.7;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 12px;
+  }
+
+  .button--delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 31, 31);
+    text-decoration: none;
   }
 }

@@ -5,6 +5,9 @@
   gap: 32px;
   width: 700px;
 }
+.form--edit {
+  width: 750px;
+}
 .form form {
   box-shadow: 0px 0px 10px rgb(200, 200, 200);
   border-radius: 5px;
@@ -14,7 +17,7 @@
   font-size: 12px;
 }
 .form__title {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
   padding-bottom: 4px;
   color: rgb(22, 115, 255);
@@ -58,9 +61,21 @@
   border-radius: 5px;
   padding: 8px;
   transition: opacity 0.5s ease;
+  width: 100%;
 }
 .form__button:hover {
   opacity: 0.7;
+}
+.form .button-group {
+  display: flex;
+  gap: 12px;
+}
+.form .button--delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 31, 31);
+  text-decoration: none;
 }
 
 /*# sourceMappingURL=style.css.map */

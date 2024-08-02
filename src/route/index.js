@@ -115,9 +115,7 @@ router.get('/product-list', function (req, res) {
 router.get('/product-edit', function (req, res) {
   const productId = req.query.id
 
-  const product = Product.getById(productId)
-
-  console.log(typeof product)
+  const product = Product.getById(Number(productId))
 
   if (product) {
     res.render('product-edit', {
@@ -131,10 +129,71 @@ router.get('/product-edit', function (req, res) {
       info: 'Товар не знайдено',
     })
   }
+})
 
-  res.render('product-edit', {
-    style: 'product-edit',
-  })
+router.post('/product-edit', function (req, res) {
+  const { id, name, price, description } = req.body
+
+  try {
+    if (!id || !name || !price || !description) {
+      throw new Error('Всі поля повинні бути заповнені')
+    }
+
+    const isUpdated = Product.updateById(parseInt(id), {
+      name,
+      price,
+      description,
+    })
+
+    if (isUpdated) {
+      res.render('alert', {
+        style: 'alert',
+        success: 'Успішне виконання дії',
+        info: 'Продукт оновлений успішно!',
+      })
+    } else {
+      res.render('alert', {
+        style: 'alert',
+        success: 'Невдале виконання дії',
+        info: 'Помилка: Продукт не знайдено.',
+      })
+    }
+  } catch (e) {
+    res.render('alert', {
+      style: 'alert',
+      success: 'Невдале виконання дії',
+      info: `Помилка: ${error.message}`,
+    })
+  }
+})
+
+router.get('/product-delete', function (req, res) {
+  const productId = Number(req.query.id)
+
+  if (isNaN(productId)) {
+    res.render('alert', {
+      style: 'alert',
+      success: 'Невдале виконання дії',
+      info: 'Невірний ідентифікатор товару.',
+    })
+    return
+  }
+
+  const isDeleted = Product.deleteById(productId)
+
+  if (isDeleted) {
+    res.render('alert', {
+      style: 'alert',
+      success: 'Успішне виконання дії',
+      info: 'Товар успішно видалено!',
+    })
+  } else {
+    res.render('alert', {
+      style: 'alert',
+      success: 'Невдале виконання дії',
+      info: 'Помилка: товар не знайдено.',
+    })
+  }
 })
 
 // Підключаємо роутер до бек-енду
