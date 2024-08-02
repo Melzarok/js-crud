@@ -1,7 +1,15 @@
 @use '../../lib/service.scss' as s;
+main {
+  width: 780px;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: s.space(5);
+}
 
 .list-title {
-  margin-bottom: s.space(8);
   font-size: 24px;
   color: s.color('primary');
 }
@@ -44,4 +52,23 @@
     color: s.color('primary');
     text-decoration: none;
   }
+}
+
+.header-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-product-button {
+  font-size: 12px;
+  background: s.color('primary');
+  color: #fff;
+  border-radius: 5px;
+  padding: s.space(2);
+  transition: opacity 0.5s ease;
+  text-decoration: none;
+}
+
+.add-product-button:hover {
+  opacity: 0.7;
 }
