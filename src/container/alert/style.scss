@@ -1,0 +1,39 @@
+@use '../../lib/service.scss' as s;
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: 5px;
+  box-shadow: s.shadow('light');
+  margin: 0 auto;
+  max-width: 650px;
+  width: 100%;
+
+  .success-message {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    p {
+      font-size: 12px;
+    }
+  }
+
+  .back-link {
+    height: 34px;
+    background-color: s.color('primary');
+    padding: 10px 35px;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 200;
+    transition: opacity 0.5s ease;
+  }
+
+  .back-link:hover {
+    opacity: 0.7;
+  }
+}

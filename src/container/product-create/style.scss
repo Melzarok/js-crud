@@ -1,0 +1,78 @@
+@use '../../lib/service.scss' as s;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: s.space(4);
+  gap: s.space(8);
+  width: 700px;
+
+  form {
+    box-shadow: s.shadow('light');
+    border-radius: 5px;
+    padding: 15px;
+  }
+
+  &-label {
+    font-size: 12px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: s.space(1);
+    color: s.color('primary');
+  }
+
+  &__group {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+  }
+
+  &__content {
+    display: grid;
+    gap: s.space(6);
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: s.space(2);
+    width: 100%;
+  }
+
+  &__label {
+    font-size: 14px;
+  }
+
+  &__input {
+    padding: s.space(1);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  &__hint {
+    font-size: 10px;
+    color: #c4c4c4;
+  }
+
+  &__input--description {
+    height: 50px;
+    resize: none;
+    font-size: 14px;
+  }
+
+  &__button {
+    font-size: 12px;
+    background: s.color('primary');
+    color: #fff;
+    border-radius: 5px;
+    padding: s.space(2);
+    transition: opacity 0.5s ease;
+  }
+
+  &__button:hover {
+    opacity: 0.7;
+  }
+}
