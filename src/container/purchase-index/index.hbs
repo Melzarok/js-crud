@@ -1,15 +1,9 @@
-<main>
-    {{#with data}}
-    <div class="product-card" style="width: 18rem;">
-        <img src="{{img}}" class="card-img-top product-card__image" alt="Product 1">
-        <h2 class="product-card__title">{{title}}</h2>
-        <p class="product-card__description">{{description}}</p>
+<main class="main">
+    {{> heading title='Товари' info="Комп'ютери та ноутбуки/Комп'ютери, неттопи, моноблоки"}}
 
-        {{#each category}}
-        <span class="product-card__category product-card__category--{{id}}">{{text}}</span>
+    <div class="product-list">
+        {{#each data.list}}
+        {{> purchase-product data=this}}
         {{/each}}
-
-        <button type="button" class="btn btn-primary">Купити зараз: {{price}} грн</button>
     </div>
-    {{/with}}
 </main>
