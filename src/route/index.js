@@ -477,17 +477,12 @@ router.get('/purchase-edit', function (req, res) {
   })
 })
 
-router.post('/purchase-update', function (req, res) {
+router.post('/purchase-edit', function (req, res) {
   const id = Number(req.query.id)
-  const { firstname, lastname, email, phone, comment } =
-    req.body
+  const purchase = req.body
 
   const isUpdated = Purchase.updateById(id, {
-    firstname,
-    lastname,
-    email,
-    phone,
-    comment,
+    purchase,
   })
 
   if (!isUpdated) {

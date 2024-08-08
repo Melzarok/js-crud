@@ -7,15 +7,17 @@
         <div>ID: {{id}}</div>
 
 
-        <div href="/purchase-info?id={{id}}" class="purchase">
-            {{> field value=}}
-
+        <div class="purchase">
+            {{> field value=lastname name=lastname label="Прізвище:"}}
+            {{> field value=firstname name=firstname label="Ім'я:"}}
+            {{> field value=email name=email label="Електронна пошта:"}}
+            {{> field value=phone name=phone label="Телефон:"}}
         </div>
 
         {{> divider}}
 
 
-        {{> button text='Змінити дані'}}
+        {{> button text='Зберегти дані'}}
 
     </form>
     {{/with}}
