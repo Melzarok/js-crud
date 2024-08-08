@@ -1,0 +1,17 @@
+{{#with data}}
+<a href="/purchase-info?id={{id}}" class="list">
+    <div class="list__item--title list__item--id">ID: {{id}}</div>
+    <div class="list__item">
+        <div class="list__item--title">Товари</div>
+        <div>{{title}}</div>
+    </div>
+    <div class="list__item">
+        <div class="list__item--title ">Price</div>
+        <div class="list__item--description">{{totalPrice}}₴</div>
+    </div>
+    <div class="list__item">
+        <div class="list__item--title">Bonus</div>
+        <div class="list__item--description">{{bonus}}₴</div>
+    </div>
+</a>
+{{/with}}
