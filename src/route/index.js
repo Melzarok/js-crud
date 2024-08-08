@@ -455,6 +455,62 @@ router.get('/purchase-info', function (req, res) {
     },
   })
 })
+
+router.get('/purchase-edit', function (req, res) {
+  const id = Number(req.query.id)
+  const purchase = Purchase.getById(id)
+
+  if (!purchase) {
+    return res.render('alert', {
+      style: 'alert',
+      data: {
+        success: 'Невдале виконання дії',
+        info: 'Замовлення не знайдено',
+        link: '/purchase-list',
+      },
+    })
+  }
+
+  res.render('purchase-edit', {
+    style: 'purchase-edit',
+    data: { purchase },
+  })
+})
+
+router.post('/purchase-update', function (req, res) {
+  const id = Number(req.query.id)
+  const { firstname, lastname, email, phone, comment } =
+    req.body
+
+  const isUpdated = Purchase.updateById(id, {
+    firstname,
+    lastname,
+    email,
+    phone,
+    comment,
+  })
+
+  if (!isUpdated) {
+    return res.render('alert', {
+      style: 'alert',
+      data: {
+        success: 'Невдале виконання дії',
+        info: 'Не вдалося оновити замовлення',
+        link: `/purchase-edit?id=${id}`,
+      },
+    })
+  }
+
+  res.render('alert', {
+    style: 'alert',
+    data: {
+      success: 'Успішне виконання дії',
+      info: 'Замовлення оновлено',
+      link: `/purchase-info?id=${id}`,
+    },
+  })
+})
+
 // ================================================================
 
 // Підключаємо роутер до бек-енду

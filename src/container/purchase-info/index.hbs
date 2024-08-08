@@ -1,21 +1,69 @@
 <main class="main">
 
     {{#with data.purchase}}
-    <form method="POST" action="/purchase-submit?id={{id}}" class="form-card">
+    <form method="POST" action="/purchase-edit?id={{id}}" class="form-card">
         {{> heading title='Інформація про замовлення'}}
 
         <div>ID: {{id}}</div>
 
         {{> divider}}
 
+        <div href="/purchase-info?id={{id}}" class="purchase">
+            <div class="purchaset__item">
+                <div class="purchase__item--title">Ім'я:</div>
+                <div>{{lastname}}</div>
+            </div>
+            <div class="purchase__item">
+                <div class="purchase__item--title">Прізвище:</div>
+                <div>{{lastname}}</div>
+            </div>
+            <div class="purchase__item">
+                <div class="purchaset__item--title ">Телефон:</div>
+                <div class="purchase__item--description">{{phone}}</div>
+            </div>
+            <div class="purchase__item">
+                <div class="purchase__item--title">Електронная пошта:</div>
+                <div class="purchase__item--description">{{email}}</div>
+            </div>
+        </div>
 
+        {{> divider}}
 
+        <div href="/purchase-info?id={{id}}" class="purchase-product__info">
+            <div class="purchase__item">
+                <div>Назва товару:</div>
+                <div>{{product.title}}</div>
+            </div>
+            <div class="purchase__item">
+                <div class="purchase__item--title">Коментар:</div>
+                <div>{{coment}}</div>
+            </div>
+        </div>
 
-        <strong class="form-card__total">
-            Всього: {{totalPrice}} грн ({{bonus}} грн бонусів)
-        </strong>
+        {{> divider}}
 
-        {{> button text='Оформити замовлення'}}
+        <div href="/purchase-info?id={{id}}" class="purchase">
+            <div class="purchaset__item">
+                <div class="purchase__item--title">Вартість товарів:</div>
+                <div>{{product.price}}</div>
+            </div>
+            <div class="purchase__item">
+                <div class="purchase__item--title">Вартість доставки:</div>
+                <div>{{deliveryPrice}}</div>
+            </div>
+            <div class="purchase__item">
+                <div class="purchaset__item--title ">Сума до сплати:</div>
+                <div class="purchase__item--description">{{totalPrice}}</div>
+            </div>
+            <div class="purchase__item">
+                <div class="purchase__item--title">Нараховані бонуси:</div>
+                <div class="purchase__item--description">{{bonus}}</div>
+            </div>
+        </div>
+
+        {{> divider}}
+
+        {{> button text='Змінити дані'}}
 
     </form>
     {{/with}}

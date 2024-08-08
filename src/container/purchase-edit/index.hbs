@@ -1,0 +1,24 @@
+<main class="main">
+
+    {{#with data.purchase}}
+    <form method="POST" action="/purchase-edit?id={{id}}" class="form-card">
+        {{> heading title='Інформація про замовлення'}}
+
+        <div>ID: {{id}}</div>
+
+
+        <div href="/purchase-info?id={{id}}" class="purchase">
+            {{> field value=}}
+
+        </div>
+
+        {{> divider}}
+
+
+        {{> button text='Змінити дані'}}
+
+    </form>
+    {{/with}}
+
+
+</main>
