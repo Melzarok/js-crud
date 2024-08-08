@@ -15,6 +15,7 @@
     gap: s.space(3);
     width: 100%;
     max-width: 250px;
+    min-width: max-content;
   }
 
   &__item--title {
