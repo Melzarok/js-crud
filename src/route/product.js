@@ -53,20 +53,20 @@ class Product {
 }
 // ================================================================
 
-// router.get('/', function (req, res) {
-//   const list = Product.getList()
+router.get('/', function (req, res) {
+  const list = Product.getList()
 
-//   res.render('product-create', {
-//     style: 'product-create',
+  res.render('product-create', {
+    style: 'product-create',
 
-//     data: {
-//       users: {
-//         list,
-//         isEmpty: list.length === 0,
-//       },
-//     },
-//   })
-// })
+    data: {
+      users: {
+        list,
+        isEmpty: list.length === 0,
+      },
+    },
+  })
+})
 
 // ================================================================
 
