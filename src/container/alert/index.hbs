@@ -5,11 +5,11 @@
 
 <div class="container">
   <div class="success-message">
-    <h1>{{success}}</h1>
-    <p>{{info}}</p>
+    <div class="success">{{data.success}}</div>
+    <p>{{data.info}}</p>
   </div>
 
-  <a href='/product-list' class="back-link">Повернутись назад</a>
+  <a href='{{data.link}}' class="back-link">Повернутись назад</a>
 </div>
 
 {{!
