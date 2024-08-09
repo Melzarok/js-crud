@@ -84,8 +84,10 @@ router.post('/user-create', function (req, res) {
 
   res.render('alert', {
     style: 'alert',
-    success: 'Успішне виконання дії',
-    info: 'Користувач створений ',
+    data: {
+      success: 'Успішне виконання дії',
+      info: 'Користувач створений ',
+    },
   })
 })
 
@@ -96,8 +98,10 @@ router.get('/user-delete', function (req, res) {
 
   res.render('alert', {
     style: 'alert',
-    success: 'Успішне виконання дії',
-    info: 'Користувач видалений ',
+    data: {
+      success: 'Успішне виконання дії',
+      info: 'Користувач видалений ',
+    },
   })
 })
 
@@ -115,12 +119,14 @@ router.post('/user-update', function (req, res) {
 
   res.render('alert', {
     style: 'alert',
-    success: result
-      ? 'Успішне виконання дії'
-      : 'Невдале виконання дії',
-    info: result
-      ? 'Емайл пошта оновлена!'
-      : 'Сталася помилка!',
+    data: {
+      success: result
+        ? 'Успішне виконання дії'
+        : 'Невдале виконання дії',
+      info: result
+        ? 'Емайл пошта оновлена!'
+        : 'Сталася помилка!',
+    },
   })
 })
 

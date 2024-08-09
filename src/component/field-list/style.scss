@@ -1,0 +1,38 @@
+@use '../../lib/service.scss' as s;
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-decoration: none;
+  color: black;
+  gap: s.space(10);
+  font-size: 14px;
+  transition: opacity 0.4s ease;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: s.space(3);
+    width: 100%;
+    max-width: 250px;
+    min-width: max-content;
+  }
+
+  &__item--title {
+    color: grey;
+    font-weight: 400;
+  }
+
+  &__item--id {
+    display: flex;
+    align-items: center;
+  }
+
+  &__item--description {
+    font-weight: 500;
+  }
+  &:hover {
+    opacity: 0.6;
+    color: black;
+  }
+}
