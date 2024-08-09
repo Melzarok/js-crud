@@ -479,10 +479,13 @@ router.get('/purchase-edit', function (req, res) {
 
 router.post('/purchase-edit', function (req, res) {
   const id = Number(req.query.id)
-  const purchase = req.body
+  const { firstname, lastname, email, phone } = req.body
 
   const isUpdated = Purchase.updateById(id, {
-    purchase,
+    firstname,
+    lastname,
+    email,
+    phone,
   })
 
   if (!isUpdated) {
