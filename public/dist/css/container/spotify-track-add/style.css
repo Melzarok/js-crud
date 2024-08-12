@@ -87,6 +87,10 @@ a:hover {
   color: #bdbdbd;
 }
 
+.main-playlist-add {
+  height: unset;
+}
+
 .add-button {
   display: grid;
   grid-template-columns: 92px 1fr;
@@ -94,6 +98,11 @@ a:hover {
   gap: 24px;
   color: #ddd;
   font-size: 18px;
+}
+
+.track__list {
+  background-color: #282828;
+  padding: 24px;
 }
 
 /*# sourceMappingURL=style.css.map */

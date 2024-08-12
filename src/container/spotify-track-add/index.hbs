@@ -1,23 +1,26 @@
-<main class="main">
+<main class="main main-playlist-add">
     {{#with data}}
     <div class="main__content">
-        <h1 class="title title--center">{{name}}</h1>
+        <h1 class="title title--center">Додати до плейліста</h1>
 
 
         <ul class="track__list">
             {{#each tracks}}
             <li class="track">
-                <img src="{{image}}">
+                <img src="{{image}}" width="92px" height="92px">
                 <div class="track__content">
                     <strong class="track__name">{{name}}</strong>
                     <em class="track__author">{{author}}</em>
                 </div>
-                <a href="/spotify-track-delete?playlistId={{../playlistId}}&trackId={{id}}">
-                    <img src="/svg/delete_button.svg">
+
+                <a href="/spotify-track-add?playlistId={{../playlistId}}&trackId={{id}}">
+                    <img src="/svg/cross_add.svg">
                 </a>
             </li>
             {{/each}}
         </ul>
+
+
 
     </div>
     {{/with}}

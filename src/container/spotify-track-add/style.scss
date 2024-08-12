@@ -2,6 +2,10 @@
 
 @use '../../lib/spotify.scss' as spotify;
 
+.main-playlist-add {
+  height: unset;
+}
+
 .add-button {
   display: grid;
   grid-template-columns: 92px 1fr;
@@ -9,4 +13,9 @@
   gap: s.space(6);
   color: s.color(light);
   font-size: 18px;
+}
+
+.track__list {
+  background-color: #282828;
+  padding: 24px;
 }
