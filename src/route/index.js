@@ -74,6 +74,7 @@ class PlayList {
     this.id = Math.floor(1000 + Math.random() * 9000)
     this.name = name
     this.tracks = []
+    this.image = 'https://picsum.photos/100/100'
   }
 
   static create(name, author, image) {
@@ -106,7 +107,7 @@ class PlayList {
 
   deleteTrackById(trackId) {
     this.tracks = this.tracks.filter(
-      (trakc) => track.id !== trackId,
+      (track) => track.id !== trackId,
     )
   }
 
@@ -118,6 +119,11 @@ class PlayList {
     )
   }
 }
+
+PlayList.makeMix(PlayList.create('Test'))
+PlayList.makeMix(PlayList.create('Test2'))
+PlayList.makeMix(PlayList.create('Test3'))
+
 // ================================================================
 
 router.get('/', function (req, res) {
@@ -212,7 +218,37 @@ router.get('/spotify-playlist', function (req, res) {
   })
 })
 
-router.get('/spotify-delete-track', function (req, res) {
+router.get('/spotify-playlist-add', function (req, res) {
+  const id = Number(req.query.id)
+
+  const playlist = PlayList.getById(id)
+
+  console.log(id, playlist)
+
+  if (!playlist) {
+    return res.render('alert', {
+      style: 'alert',
+
+      data: {
+        success: 'Помилка',
+        info: 'Такого плейліста не знайдено',
+        link: `/`,
+      },
+    })
+  }
+
+  res.render('spotify-playlist-add', {
+    layout: 'spotify/index',
+    style: 'spotify-playlist-add',
+
+    data: {
+      playlistId: playlist.id,
+      tracks: Track.getList(),
+    },
+  })
+})
+
+router.get('/spotify-track-delete', function (req, res) {
   const playlistId = Number(req.query.playlistId)
   const trackId = Number(req.query.trackId)
 
@@ -246,8 +282,6 @@ router.get('/spotify-delete-track', function (req, res) {
 
 router.get('/spotify-search', function (req, res) {
   const value = ''
-
-  const trackId = Number(req.query.trackId)
 
   const list = PlayList.findListByValue(value)
 

@@ -57,22 +57,43 @@ a:hover {
   font-size: 24px;
   color: #ddd;
 }
-
-.choose {
-  display: grid;
-  gap: 24px;
+.track__author {
+  font-size: 16px;
+  color: #bdbdbd;
 }
 
-.choose__item {
+.playlist {
   display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 24px;
+  grid-template-columns: 92px 1fr;
+  gap: 28px;
+  align-items: center;
 }
-
-.choose__content {
+.playlist__list {
+  display: grid;
+  gap: 28px;
+}
+.playlist__content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 8px;
+}
+.playlist__name {
+  font-size: 24px;
+  color: #ddd;
+}
+.playlist__amount {
+  font-size: 16px;
+  color: #bdbdbd;
+}
+
+.add-button {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  align-items: center;
+  gap: 24px;
+  color: #ddd;
+  font-size: 18px;
 }
 
 /*# sourceMappingURL=style.css.map */
