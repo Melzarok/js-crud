@@ -19,3 +19,12 @@
   background-color: #282828;
   padding: 24px;
 }
+
+button {
+  transition: opacity 0.6s;
+
+  &:hover {
+    opacity: 0.6;
+    color: inherit;
+  }
+}

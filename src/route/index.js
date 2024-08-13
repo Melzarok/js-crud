@@ -115,11 +115,7 @@ class PlayList {
     )
   }
 
-  addTrack(trackId) {
-    const track = Track.getById(trackId)
-    if (!track) {
-      throw new Error('Трек не знайдено')
-    }
+  addTrack(track) {
     this.tracks.push(track)
   }
 
@@ -232,10 +228,16 @@ router.get('/spotify-playlist', function (req, res) {
 })
 
 router.post('/spotify-track-add', function (req, res) {
-  const playlistId = Number(req.query.playlistId)
-  const trackId = Number(req.query.trackId)
+  let { playlistId, trackId } = req.body
+
+  playlistId = Number(playlistId)
+  trackId = Number(trackId)
+
+  console.log(playlistId, trackId)
 
   const playlist = PlayList.getById(playlistId)
+
+  const track = Track.getById(trackId)
 
   if (!playlist) {
     return res.render('alert', {
@@ -249,7 +251,7 @@ router.post('/spotify-track-add', function (req, res) {
     })
   }
 
-  playlist.addTrack(trackId)
+  playlist.addTrack(track)
 
   console.log(playlist)
 
