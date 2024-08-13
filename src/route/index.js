@@ -123,7 +123,7 @@ class PlayList {
     return this.#list.filter((playlist) =>
       playlist.name
         .toLowerCase()
-        .includes(value, toLowerCase()),
+        .includes(value.toLowerCase()),
     )
   }
 }
@@ -135,6 +135,22 @@ PlayList.makeMix(PlayList.create('Test3'))
 // ================================================================
 
 router.get('/', function (req, res) {
+  const list = PlayList.getList()
+
+  res.render('spotify-list-playlists', {
+    layout: 'spotify/index',
+    style: 'spotify-list-playlists',
+
+    data: {
+      list: list.map(({ tracks, ...rest }) => ({
+        ...rest,
+        amount: tracks.length,
+      })),
+    },
+  })
+})
+
+router.get('/spotify-choose', function (req, res) {
   res.render('spotify-choose', {
     layout: 'spotify/index',
     style: 'spotify-choose',
@@ -233,8 +249,6 @@ router.post('/spotify-track-add', function (req, res) {
   playlistId = Number(playlistId)
   trackId = Number(trackId)
 
-  console.log(playlistId, trackId)
-
   const playlist = PlayList.getById(playlistId)
 
   const track = Track.getById(trackId)
@@ -253,7 +267,7 @@ router.post('/spotify-track-add', function (req, res) {
 
   playlist.addTrack(track)
 
-  console.log(playlist)
+  console.log(playlistId, trackId)
 
   res.render('spotify-playlist', {
     layout: 'spotify/index',
@@ -268,12 +282,14 @@ router.post('/spotify-track-add', function (req, res) {
 })
 
 router.get('/spotify-track-add', function (req, res) {
+  const { playlistId } = req.query
   res.render('spotify-track-add', {
     layout: 'spotify/index',
     style: 'spotify-track-add',
 
     data: {
       tracks: Track.getList(),
+      playlistId,
     },
   })
 })
@@ -283,6 +299,8 @@ router.get('/spotify-track-delete', function (req, res) {
   const trackId = Number(req.query.trackId)
 
   const playlist = PlayList.getById(playlistId)
+
+  console.log(playlistId, trackId)
 
   if (!playlist) {
     return res.render('alert', {
