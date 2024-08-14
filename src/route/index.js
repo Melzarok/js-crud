@@ -232,13 +232,13 @@ router.get('/spotify-playlist', function (req, res) {
     })
   }
 
-  res.render('spotify-playlist-add', {
+  res.render('spotify-playlist', {
     layout: 'spotify/index',
-    style: 'spotify-playlist-add',
+    style: 'spotify-playlist',
 
     data: {
       playlistId: playlist.id,
-      tracks: Track.getList(),
+      tracks: playlist.tracks,
     },
   })
 })
